@@ -1,0 +1,34 @@
+@EfCoreTransactions.Api_HostAddress = http://localhost:5166
+
+### Create an order inside an explicit transaction
+POST {{EfCoreTransactions.Api_HostAddress}}/api/orders
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "quantity": 2,
+  "useExplicitTransaction": true,
+  "simulatePaymentFailure": false
+}
+
+### Simulate a payment failure without an explicit transaction
+POST {{EfCoreTransactions.Api_HostAddress}}/api/orders
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "quantity": 1,
+  "useExplicitTransaction": false,
+  "simulatePaymentFailure": true
+}
+
+### Simulate a payment failure inside an explicit transaction
+POST {{EfCoreTransactions.Api_HostAddress}}/api/orders
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "quantity": 1,
+  "useExplicitTransaction": true,
+  "simulatePaymentFailure": true
+}
